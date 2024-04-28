@@ -8,7 +8,9 @@
     "deploy": "$npm_execpath run build && wrangler pages deploy dist"
   },
   "dependencies": {
-    "hono": "^4.2.8"
+    "@hono/zod-validator": "^0.2.1",
+    "hono": "^4.2.8",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240403.0",
