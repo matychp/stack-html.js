@@ -6,7 +6,7 @@ export function AddToDo() {
       hx-target="#todos-list"
       hx-swap="beforeend"
     >
-      <span>Add a new todo:</span>
+      <label for="value">Add a todo:</label>
       <input
         type="text"
         name="value"

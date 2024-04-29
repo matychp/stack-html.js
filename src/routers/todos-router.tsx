@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from "node:crypto";
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
@@ -28,5 +28,30 @@ todos.post(
     todosList.push(todo);
 
     return c.render(<ToDoItem index={todosList.length} todo={todo} />);
+  },
+);
+
+todos.delete(
+  "/:id",
+  zValidator(
+    "param",
+    z.object({
+      id: z.string(),
+    }),
+  ),
+  (c) => {
+    const { id } = c.req.valid("param");
+
+    const index = todosList.findIndex((todo) => todo.id === id);
+
+    if (index === -1) {
+      return c.render(<>Error</>);
+    }
+
+    todosList.splice(index, 1);
+
+    c.status(200);
+
+    return c.render(<></>);
   },
 );

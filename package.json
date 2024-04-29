@@ -2,8 +2,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:css": "bunx tailwindcss -i ./src/index.css -o ./public/static/index.css --watch",
     "build": "vite build",
-    "build:css": "bunx tailwindcss -i ./src/index.css -o ./public/static/output.css --watch",
+    "prebuild": "bunx tailwindcss -i ./src/index.css -o ./public/static/index.css",
     "preview": "wrangler pages dev dist",
     "deploy": "$npm_execpath run build && wrangler pages deploy dist"
   },
